@@ -1,6 +1,6 @@
 '''
 v simple script to merge
-Do this at the end, once I've sorted out manual process for each school
+Do this at the end, once I've sorted out manual process for each school.
 '''
 
 import pandas as pd 
