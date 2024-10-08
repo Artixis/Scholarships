@@ -11,3 +11,6 @@ The following git repo contains a task for Scholarships Operations Group in whic
 - UTS
 
 The main goal is to collect information on their Equity, High Potential and Humanitarian Scholarships. 
+
+
+Update
