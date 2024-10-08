@@ -14,6 +14,9 @@ other_keys = ['phd', 'diploma', 'doctorate', 'honours']
 UNSW_data = []
 year_pat = r'(\d+)\s+(?=years?|year)'
 
+def format_criteria(criteria_list):
+    return '\n'.join([f'• {criteria}' for criteria in criteria_list])
+
 def check_duration(value_info):
     if "duration" in value_info.lower():
         duration = "Duration of degree"
@@ -135,8 +138,6 @@ for i in range(1, 82):
     url_i = concatenate_url(href_value)
     search_page(url_i)
 
-def format_criteria(criteria_list):
-    return '\n'.join([f'• {criteria}' for criteria in criteria_list])
 
 df = pd.DataFrame(UNSW_data)
 df['Criteria'] = df['Criteria'].apply(format_criteria)
