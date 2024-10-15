@@ -5,7 +5,7 @@ The following git repo contains a task for Scholarships Operations Group in whic
 - UNSW
 - USYD - **Done** on home computer - need to merge. 
 - Charles Sturt
-- University of Wollongong
+- University of Wollongong - **Done** - needs cleaning
 - University of Newcaslte - **Done** on home computer
 - Maquarie University - **Done**
 - UTS - **Done**
