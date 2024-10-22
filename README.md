@@ -2,7 +2,7 @@
 Web Scraping for NSW University Scholarships
 
 The following git repo contains a task for Scholarships Operations Group in which we research the scholarships being offered at the following universities:
-- UNSW - Half done, code can be found in Scholarship_Scrape.py
+- UNSW - Half done, code can be found in Scholarship_Scrape.py - needs to be heavily modified but have a lot of code to work with now to fix issues. 
 - USYD - **Done** on home computer - need to merge. 
 - Charles Sturt
 - University of Wollongong - **Done** - needs cleaning
