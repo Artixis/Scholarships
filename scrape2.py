@@ -91,6 +91,7 @@ def search_page(base_url, page_url):
     scholarship_info = soup.find('div', class_='richTextModule b-single-column__container')
 
     val = find_value(scholarship_info)
+
     duration = check_duration(scholarship_info.find('td').get_text(strip=True))
 
     eligibility_items = scholarship_info.findAll('li')
@@ -107,5 +108,9 @@ def search_page(base_url, page_url):
 
 test_url = "https://www.sydney.edu.au/scholarships/e/adam-scott-foundation-scholarship.html"
 
-search_page("", test_url)
-print(data_raw)
+#search_page("", test_url)
+#print(data_raw)
+
+year_num = re.search('\b(\d+)\b|\((\d+)\)', "1 year")
+print(year_num)
+duration = f"{year_num.group(1)} years"
