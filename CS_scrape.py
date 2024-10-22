@@ -424,3 +424,4 @@ print("Done")
 
 
 # TODO: add code to iterate over the eligibility criteria to flag indigenous preference
+>>>>>>> def83a68f53c2b62f40a7bc1c5134ddf4efd44bf
