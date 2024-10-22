@@ -1,3 +1,7 @@
+'''
+PULL FIRST YA SILLY
+'''
+
 
 import requests
 import re

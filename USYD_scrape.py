@@ -1,3 +1,6 @@
+'''
+PULL FIRST YA SILLY
+'''
 import requests
 import re
 import pandas as pd
