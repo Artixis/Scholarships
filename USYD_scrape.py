@@ -1,13 +1,7 @@
-'''
-PULL FIRST YA SILLY
-'''
 import requests
 import re
 import pandas as pd
-import operator as op
 from bs4 import BeautifulSoup
-import openpyxl
-from openpyxl.styles import Font
 
 value_pat = r'\$\d{1,3}(?:,\d{3})*'
 year_pat = r'(\d+)\s+(?=years?|year)'
@@ -78,6 +72,35 @@ def check_duration(value_info):
         duration = "na"
     return duration
 
+
+word_to_num = {
+    "one": 1,
+    "two": 2,
+    "three": 3,
+    "four": 4,
+    "five": 5,
+    "six": 6,
+    "seven": 7,
+    "eight": 8,
+    "nine": 9,
+    "ten": 10
+}
+
+def get_duration(tnc_soup):
+    value_section = tnc_soup.find_all(string="4. Value")[0].find_next('p')
+    duration_text = value_section.get_text()
+    match = re.search(r'(\d+|\b(?:one|two|three|four|five|six|seven|eight|nine|ten)\b)\s*year(s)?', duration_text)
+    if match:
+        duration_years = match.group(1)
+        if duration_years.isdigit():
+            duration_years = int(duration_years)
+        else:
+            duration_years = word_to_num[duration_years]
+    
+    duration = f"{duration_years} years"
+    
+    return(duration)
+
 def search_page(base_url, page_url):
 
     url = concatenate_url(base_url, page_url)
@@ -95,7 +118,9 @@ def search_page(base_url, page_url):
 
     val = find_value(scholarship_info)
 
-    duration = check_duration(scholarship_info.find('td').get_text(strip=True))
+    #duration = check_duration(scholarship_info.find('td').get_text(strip=True))
+    terms_and_conds = soup.find('div', class_='content richTextModule')
+    duration = get_duration(terms_and_conds)
 
     eligibility_items = scholarship_info.findAll('li')
     if eligibility_items:
@@ -105,15 +130,29 @@ def search_page(base_url, page_url):
             indigen = "Preference"
     
     summary_text = soup.find('div', class_='cq-editable-inline-text').get_text(strip=True)
-    print(summary_text)
+    #print(summary_text)
     create_data_entry("USYD", create_hyperlink(page_url, scholarship_name), type_of_schol, val, check_level(summary_text), eligibility, duration = duration, indigenous = indigen)
 
-
-test_url = "https://www.sydney.edu.au/scholarships/e/adam-scott-foundation-scholarship.html"
+test_url = "https://www.sydney.edu.au/scholarships/e/david-clarke-memorial-scholarship.html"
 
 #search_page("", test_url)
 #print(data_raw)
 
-year_num = re.search('\b(\d+)\b|\((\d+)\)', "1 year")
-print(year_num)
-duration = f"{year_num.group(1)} years"
+'''
+TODO
+
+Will need to consider cases where the page link does not work. For example:
+https://www.heti.nsw.gov.au/Placements-Scholarships-Grants/scholarships-and-grants/
+supporting-entry-into-university-medicine-program-scholarship
+'''
+
+base_url = "https://www.sydney.edu.au/scholarships/"
+# This covers Bachelors and Honours scholarships
+general_url = "https://www.sydney.edu.au/scholarships/domestic/bachelors-honours/general.html"
+response = requests.get(general_url)
+soup_general = BeautifulSoup(response.content, 'html.parser')
+urls = [a['href'] for a in soup_general.find_all('a', href=True) if a['href'].startswith('/content/corporate/')]
+modified_urls = [url.replace('/content/corporate/scholarships/', '') for url in urls]
+
+for url in modified_urls:
+    print(concatenate_url(base_url,url))
