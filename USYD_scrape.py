@@ -118,7 +118,6 @@ def search_page(base_url, page_url):
 
     val = find_value(scholarship_info)
 
-    #duration = check_duration(scholarship_info.find('td').get_text(strip=True))
     terms_and_conds = soup.find('div', class_='content richTextModule')
     duration = get_duration(terms_and_conds)
 
@@ -135,16 +134,6 @@ def search_page(base_url, page_url):
 
 test_url = "https://www.sydney.edu.au/scholarships/e/david-clarke-memorial-scholarship.html"
 
-#search_page("", test_url)
-#print(data_raw)
-
-'''
-TODO
-
-Will need to consider cases where the page link does not work. For example:
-https://www.heti.nsw.gov.au/Placements-Scholarships-Grants/scholarships-and-grants/
-supporting-entry-into-university-medicine-program-scholarship
-'''
 
 base_url = "https://www.sydney.edu.au/scholarships/"
 # This covers Bachelors and Honours scholarships
@@ -156,3 +145,8 @@ modified_urls = [url.replace('/content/corporate/scholarships/', '') for url in 
 
 for url in modified_urls:
     print(concatenate_url(base_url,url))
+
+
+'''
+Currently, the duration function does not consider the DOD or the One-off
+'''
