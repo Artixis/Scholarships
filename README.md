@@ -13,7 +13,11 @@ The following git repo contains a task for Scholarships Operations Group in whic
 The main goal is to collect information on their Equity, High Potential and Humanitarian Scholarships. For now, some have been done manually when convenient
 while others have been automated using web scrapping. 
 
+<br> 
 
-Some notes on the CS scholarships so far. Most of the stuff has been extracted with relative ease. The main issue is the inconsistency with the website. 
-This is making it a lil annoying to get the eligibility information. Currently checking strong text for MUST BE.. or AVAL. Need to add a third condition. If neither 
-of these conditions are met, get all information in eligibility tab (up until notes) and collect each section, usually in \<p> paragraphs
+### Updates
+
+- Scholarships have been merged with the exception of USYD. Code needs to be written up for this university.
+- Basic cleaning has been done on first merge, for Level, Duration, Type and Blanks.
+- One of the Universities in the merged file is not complete (I think is UOW - light blue)
+  - Find this and check against the main webpage if scholarships are missing. 
