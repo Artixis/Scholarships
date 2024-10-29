@@ -119,7 +119,7 @@ def search_page(page_URL):
     else:
         eligibility = "NULL"
 
-
+    print(type(eligibility))
     create_data_entry("UNSW", create_hyperlink(page_URL, scholarship_name), type_of_schol, scholarship_value, check_level(eligibility), eligibility, duration = check_duration(scholarship_value_info), indigenous = indigen)
 
 
@@ -129,7 +129,8 @@ soup2 = BeautifulSoup(main_page.content, "html.parser")
 
 # Less now lol
 # for UNSW 1-92
-for i in range(1, 82):  
+
+for i in range(1, 96):  
     div_class = f'row-content-{i} row-content col-1 clearfix'
     div = soup2.find('div', class_=div_class)
     a_tag = div.find('a')
@@ -138,6 +139,8 @@ for i in range(1, 82):
     url_i = concatenate_url(href_value)
     search_page(url_i)
 
+
+#search_page("https://www.scholarships.unsw.edu.au/scholarships/id/906/6534")
 
 df = pd.DataFrame(UNSW_data)
 df['Criteria'] = df['Criteria'].apply(format_criteria)
