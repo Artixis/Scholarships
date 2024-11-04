@@ -140,7 +140,9 @@ base_url = "https://www.sydney.edu.au/scholarships/"
 general_url = "https://www.sydney.edu.au/scholarships/domestic/bachelors-honours/general.html"
 response = requests.get(general_url)
 soup_general = BeautifulSoup(response.content, 'html.parser')
-urls = [a['href'] for a in soup_general.find_all('a', href=True) if a['href'].startswith('/content/corporate/')]
+# Doing this ensures we  only get the urls we need. 
+main_section = soup_general.find('div', class_='bodyColumn')
+urls = [a['href'] for a in main_section.find_all('a', href=True) if a['href'].startswith('/content/corporate/')]
 modified_urls = [url.replace('/content/corporate/scholarships/', '') for url in urls]
 
 for url in modified_urls:
