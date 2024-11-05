@@ -12,7 +12,8 @@ value_pat = r'\$\d{1,3}(?:,\d{3})*'
 
 # Keys
 name_omit_keys = ['indigenous', 'aboriginal', 'first nations', 'travel', 'abroad', '404', 'page not found']
-
+PG_keys = ['pg', 'master', 'postgraduate', 'masters']
+UG_keys = ['ug', 'bachelor', 'undergraduate']
 ##########
 
 def create_data_entry(name="USYD", url="NA", type_of="NA", value="NA", level="NA", criteria="NA", duration="NA", indigenous="No", placement="No"):
@@ -61,9 +62,23 @@ def find_duration_text(soup):
                     next_paragraphs =p_elements[i+1]
     return (next_paragraphs)
 
+def get_level(soup):
+    level = "NA"
+    level_soup = soup.find('div', class_='pageStrapline')
+    if level_soup:
+        text_soup = level_soup.get_text().lower()
+        has_pg = any(key in text_soup for key in PG_keys)
+        has_ug = any(key in text_soup for key in UG_keys)
 
-
-    return duration
+        if has_pg and has_ug:
+            level = "UG/PG"
+        elif has_pg:
+            level = "PG"
+        elif has_ug:
+            level = "UG"
+        else:
+            level = "NA"
+    return level
 
 def search_page(page_url):
     placement = "No"
@@ -90,9 +105,9 @@ def search_page(page_url):
 
     duration = find_duration_text(soup)
 
+    level = get_level(soup)
 
-
-    create_data_entry(url=create_hyperlink(page_url, schol_name), placement=placement, value=schol_val, duration=duration)
+    create_data_entry(url=create_hyperlink(page_url, schol_name), placement=placement, value=schol_val, duration=duration, level=level)
     return
 
 ##########
@@ -116,7 +131,7 @@ for url in url_list:
     test_num += 1
     print("**Test Page: ", test_num, "  URL: ", url)
     search_page(url)
-    #break
+    
 
 ##########
 
