@@ -13,6 +13,7 @@ pages_to_scrape = ['https://www.sydney.edu.au/scholarships/domestic/bachelors-ho
                    'https://www.sydney.edu.au/scholarships/domestic/postgraduate-coursework/faculty/law.html', 'https://www.sydney.edu.au/scholarships/domestic/postgraduate-coursework/faculty/medicine-health.html',
                    'https://www.sydney.edu.au/scholarships/domestic/postgraduate-coursework/faculty/music.html', 'https://www.sydney.edu.au/scholarships/domestic/postgraduate-coursework/faculty/science.html']
 
+print(len(pages_to_scrape))
 
 urls = set() 
 
