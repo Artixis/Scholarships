@@ -32,3 +32,7 @@ with the base USYD URL and saves the resulting list in a pickle object. Addition
 
 The scholarships pages on USYD are inconsistent in the formatting and a number of the pages are inactive, which leaves us with roughly $430$ pages in total. In 
 `USY_scrape.py`, I have decided to start the code from scratch. Integrating code from the other university scraping scripts was not feasible. 
+
+<br>
+
+USYD is a nightmare with this method. Get what we can with the level of the degree and then bite the bullet and fix manually. 
