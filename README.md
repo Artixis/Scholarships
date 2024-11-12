@@ -17,9 +17,7 @@ while others have been automated using web scrapping.
 
 ### Updates
 
-- Basic cleaning has been done on first merge, for Level, Duration, Type and Blanks.
-- One of the Universities in the merged file is not complete (I think is UOW - light blue)
-  - Find this and check against the main webpage if scholarships are missing. 
+- All cleaning (bar asylum seeker) has been down for all universities except for USYD. Only 360 (LOL) to go. Some of these will be deleted but omg. 
 
 <br> 
 
